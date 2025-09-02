@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from main branch
-                git branch: 'main', url: 'https://github.com/Harsha6404/hotstarby.git'
+                git branch: 'main', url: 'https://github.com/prasanth909/hotstarby.git'
 
                 // Verify files
                 sh 'pwd'
@@ -58,7 +58,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f con8 || true
-                    docker run -d --name con8 -p 9943:8080 hotstar:v1
+                    docker run -d --name con8 -p 8085:8080 hotstar:v1
                 '''
             }
         }
@@ -67,7 +67,7 @@ pipeline {
             steps {
                 sh '''
                     docker service update --image hotstar:v1 hotstarserv || \
-                    docker service create --name hotstarserv -p 8009:8080 --replicas=10 hotstar:v1
+                    docker service create --name hotstarserv -p 8086:8080 --replicas=10 hotstar:v1
                 '''
             }
         }
